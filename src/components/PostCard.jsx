@@ -1,7 +1,7 @@
 "use client";
 
-import { getTextExcerpt } from "@/lib/getTextExcerpt";
-import { formatDate } from "@/lib/formatDate";
+import { getTextExcerpt } from "@/lib/utils/getTextExcerpt";
+import { formatDate } from "@/lib/utils/formatDate";
 
 import Link from "next/link";
 import Image from "next/image";
