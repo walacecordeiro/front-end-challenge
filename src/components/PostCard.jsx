@@ -1,5 +1,7 @@
 "use client";
 
+import { getTextExcerpt } from "@/lib/getTextExcerpt";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock } from "lucide-react";
@@ -11,14 +13,22 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-export default function PostCard() {
+export default function PostCard({ post }) {
+  const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
+  const imageUrl = featuredImage?.source_url || "/api/placeholder/400/200";
+  const imageAlt = featuredImage?.alt_text || post.title.rendered;
+
+  const excerpt = post.excerpt?.rendered
+    ? getTextExcerpt(post.excerpt.rendered)
+    : getTextExcerpt(post.content.rendered);
+
   return (
     <Card className="py-0 border-2 overflow-hidden max-w-full sm:max-w-md md:max-w-lg mx-auto transition-all duration-300 shadow-sm md:hover:scale-[1.01]">
       <Link href="#">
         <CardHeader className="flex p-0 w-full gap-0 sm:h-52 md:h-64">
           <Image
-            src=""
-            alt=""
+            src={imageUrl}
+            alt={imageAlt}
             width={400}
             height={200}
             className="object-cover w-full h-full"
@@ -30,7 +40,7 @@ export default function PostCard() {
         </CardHeader>
         <CardContent className="p-3 sm:p-4">
           <CardTitle className="text-base text-primary sm:text-lg mb-2">
-            Título do post
+            {post.title.rendered}
           </CardTitle>
           <CardDescription className="text-foreground text-xs sm:text-sm mb-4">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas

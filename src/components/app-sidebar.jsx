@@ -53,7 +53,7 @@ const data = {
         {
           title: "Plugins Essenciais para Blogs",
           url: "#",
-          isActive: true,
+          isActive: true, // Talvez eu use o active do próprio NextJS, verificar posteriormente!
         },
         {
           title: "Criando e Editando Posts",
@@ -143,7 +143,7 @@ export function AppSidebar({ ...props }) {
           <SidebarMenuItem>
             <SidebarMenuButton className="place-content-center hover:bg-primary/30" size="lg" asChild>
               <Link href={"/"}>
-                <Image src={logo} />
+                <Image src={logo} alt="logo do blog da Apiki"/>
                 <div className="flex flex-col leading-none">
                   <span className="font-medium">Developer</span>
                 </div>
