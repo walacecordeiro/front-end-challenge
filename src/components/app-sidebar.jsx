@@ -134,16 +134,19 @@ const data = {
   ],
 };
 
-
 export function AppSidebar({ ...props }) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="place-content-center hover:bg-primary/30" size="lg" asChild>
+            <SidebarMenuButton
+              className="place-content-center hover:bg-primary/30"
+              size="lg"
+              asChild
+            >
               <Link href={"/"}>
-                <Image src={logo} alt="logo do blog da Apiki"/>
+                <Image src={logo} alt="logo do blog da Apiki" />
                 <div className="flex flex-col leading-none">
                   <span className="font-medium">Developer</span>
                 </div>
@@ -166,7 +169,11 @@ export function AppSidebar({ ...props }) {
                   <SidebarMenuSub>
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton className="hover:bg-primary/30" asChild isActive={item.isActive}>
+                        <SidebarMenuSubButton
+                          className="hover:bg-primary/30"
+                          asChild
+                          isActive={item.isActive}
+                        >
                           <Link href={item.url}>{item.title}</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>

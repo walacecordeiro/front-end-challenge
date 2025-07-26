@@ -1,6 +1,7 @@
 "use client";
 
 import { getTextExcerpt } from "@/lib/getTextExcerpt";
+import { formatDate } from "@/lib/formatDate";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -43,18 +44,20 @@ export default function PostCard({ post }) {
             {post.title.rendered}
           </CardTitle>
           <CardDescription className="text-foreground text-xs sm:text-sm mb-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
-            tempora a maxime officiis incidunt inventore quia, cupiditate iste
-            fugit exercitationem voluptatum facilis animi eum doloremque porro
-            corporis corrupti vero officia...
+            {excerpt}
           </CardDescription>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
               <Calendar size={16} />
-              15 de fevereiro de 2025
+              {formatDate(post.date)}
             </div>
             <div className="flex items-center gap-1">
-              <Clock size={16} />5 min de leitura
+              <Clock size={16} />
+              {Math.ceil(
+                post.content.rendered.replace(/<[^>]*>/g, "").split(" ")
+                  .length / 200
+              )}{" "}
+              min de leitura
             </div>
           </div>
         </CardContent>
