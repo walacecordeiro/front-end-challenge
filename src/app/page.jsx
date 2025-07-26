@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 p-4 md:p-8 lg:p-12">
-        <div className="max-w-full md:max-w-[95%] lg:max-w-[80%] mx-auto md:px-6">
+        <div className="max-w-full mx-auto md:px-6">
           <div className="text-center mb-8 md:mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Blog de Desenvolvimento</h1>
             <p className="text-base md:text-lg lg:text-[1.2rem] max-w-full md:max-w-[600px] mx-auto">
