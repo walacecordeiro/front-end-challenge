@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     <div className="flex w-full place-items-center justify-center gap-4 pointer-events-none">
       <Image
-        className="size-36 border-5 border-primary rounded-full animate-[spin_3s_linear_infinite]"
+        className="size-max border-5 border-primary rounded-full animate-[spin_3s_linear_infinite]"
         src={logomarca}
         alt="logo marca da Apiki"
         priority // Adiciona prioridade máxima de carregamento

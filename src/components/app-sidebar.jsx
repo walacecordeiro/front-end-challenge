@@ -149,6 +149,7 @@ export function AppSidebar({ ...props }) {
                 <Image src={logo} alt="logo do blog da Apiki" />
                 <div className="flex flex-col leading-none">
                   <span className="font-medium">Developer</span>
+                  <p className="text-destructive">Menu ilustrativo</p>
                 </div>
               </Link>
             </SidebarMenuButton>

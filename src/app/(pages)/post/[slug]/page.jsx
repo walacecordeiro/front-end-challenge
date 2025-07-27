@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchPostBySlug } from "@/lib/services/api";
 import { formatDate } from "@/lib/utils/formatDate";
@@ -10,11 +10,12 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 
 import Image from "next/image";
 import Loading from "@/app/loading";
-import LinkButton from "@/components/LinkButton";
+import MyButton from "@/components/MyButton";
 
 export default function PostPage() {
   const params = useParams();
   const [post, setPost] = useState(null);
+  const contentRef = useRef(null);
 
   const featuredImage = post && post._embedded?.["wp:featuredmedia"]?.[0];
   const imageUrl = featuredImage?.source_url;
@@ -26,6 +27,17 @@ export default function PostPage() {
       loadPost(params.slug);
     }
   }, [params.slug]);
+
+  // faz com que os links internos do conteúdo da API tenham a prop target="_blank"
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const links = contentRef.current.querySelectorAll("a");
+    links.forEach((link) => {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+    });
+  }, [post]);
 
   const loadPost = async (slug) => {
     try {
@@ -86,18 +98,23 @@ export default function PostPage() {
               }}
             />
 
+            {/* 
+              - Abaixo estilizei o conteúdo externo de cada post através de seletores do TailwindCSS (cada caso é um caso)
+              - Se houver mais elementos que não foram estilizados precisamos analizar isto 
+            */}
             <div
-              className="text-foreground text-xs sm:text-base mb-4 [&_h2]:text-primary [&_h2]:text-lg lg:[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mb-2 [&_p]:mb-4 [&_p]:leading-relaxed"
+              ref={contentRef}
+              className={`text-foreground text-xs sm:text-base mb-4 [&_div]:!w-full [&_h2]:text-primary [&_h2]:text-lg lg:[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mb-2 [&_p]:mb-4 [&_p]:leading-relaxed [&_a]:text-primary [&_img]:w-full [&_img]:mb-4 [&_img]:rounded-lg [&_table]:mb-4 [&_table]:rounded-md [&_table]:overflow-hidden [&_th]:p-2 [&_th]:border-2 [&_th]:border-primary [&_td]:p-2 [&_td]:border-2 [&_td]:border-primary [&_td]:text-center [&_td]:mb-4`}
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />
           </article>
 
-          <LinkButton
-            url="/"
-            icon={<ArrowLeft size={16} />}
-            innerText="Voltar para o início"
-            className="sticky bg-background self-end bottom-6"
-          />
+          <div className="bg-background sticky self-end bottom-2">
+            <MyButton url="/">
+              <ArrowLeft size={16} />
+              Voltar para o início
+            </MyButton>
+          </div>
         </div>
       ) : (
         <Loading />

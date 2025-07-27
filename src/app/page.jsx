@@ -5,16 +5,39 @@ import { fetchPosts } from "@/lib/services/api";
 
 import PostCard from "@/components/PostCard";
 import Loading from "./loading";
+import MyButton from "@/components/MyButton";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasNextPage, setHasNextPage] = useState(false);
 
   const loadInitialPosts = async () => {
     try {
       const data = await fetchPosts(1);
       setPosts(data.posts);
+      setCurrentPage(data.currentPage);
+      setHasNextPage(data.hasNextPage);
     } catch (err) {
       console.error("Error loading posts:", err);
+    }
+  };
+
+  const loadMorePosts = async () => {
+    if (loadingMore || !hasNextPage) return;
+
+    try {
+      setLoadingMore(true);
+      const nextPage = currentPage + 1;
+      const data = await fetchPosts(nextPage);
+      setPosts((prevPosts) => [...prevPosts, ...data.posts]);
+      setCurrentPage(data.currentPage);
+      setHasNextPage(data.hasNextPage);
+    } catch (error) {
+      console.error("Error loading posts:", err);
+    } finally {
+      setLoadingMore(false);
     }
   };
 
@@ -41,6 +64,17 @@ export default function Home() {
               <PostCard key={post.id} post={post} />
             ))}
           </div>
+
+          {hasNextPage && (
+            <MyButton
+              className={`mt-6 ${
+                loadingMore && "bg-transparent hover:bg-transparent"
+              }`}
+              onClick={loadMorePosts}
+            >
+              {loadingMore ? <Loading /> : <>Carregar mais...</>}
+            </MyButton>
+          )}
         </div>
       ) : (
         <Loading />
