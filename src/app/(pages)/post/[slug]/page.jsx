@@ -104,7 +104,7 @@ export default function PostPage() {
             */}
             <div
               ref={contentRef}
-              className={`text-foreground text-xs sm:text-base mb-4 [&_div]:!w-full [&_h2]:text-primary [&_h2]:text-lg lg:[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mb-2 [&_p]:mb-4 [&_p]:leading-relaxed [&_a]:text-primary [&_img]:w-full [&_img]:mb-4 [&_img]:rounded-lg [&_table]:mb-4 [&_table]:rounded-md [&_table]:overflow-hidden [&_th]:p-2 [&_th]:border-2 [&_th]:border-primary [&_td]:p-2 [&_td]:border-2 [&_td]:border-primary [&_td]:text-center [&_td]:mb-4`}
+              className={`text-foreground text-xs sm:text-base mb-4 [&_div]:!w-full [&_h2]:text-primary [&_h2]:text-lg lg:[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mb-2 [&_p]:mb-4 [&_p]:leading-relaxed [&_a]:text-primary [&_img]:w-full [&_img]:mb-4 [&_img]:rounded-lg [&_table]:mb-4 [&_table]:rounded-md [&_table]:overflow-hidden [&_th]:p-2 [&_th]:border-2 [&_th]:border-primary [&_td]:p-2 [&_td]:border-2 [&_td]:border-primary [&_td]:text-center [&_td]:mb-4 [&_iframe]:w-full [&_iframe]:h-[400px] [&_iframe]:rounded-md`}
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />
           </article>
