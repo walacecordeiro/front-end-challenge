@@ -33,6 +33,7 @@ export default function PostCard({ post }) {
             width={400}
             height={200}
             className="object-cover w-full h-full"
+            priority
             onError={(e) => {
               e.target.src =
                 "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop";

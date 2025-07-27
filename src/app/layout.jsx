@@ -2,12 +2,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { AppSidebar } from "@/components/app-sidebar";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,14 +21,11 @@ export default function RootLayout({ children }) {
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="sticky z-10 bg-background top-0 h-16 shrink-0 place-content-center gap-2 border-b-2 border-foreground/15">
-              <div className="flex items-center gap-2 px-3">
-                <SidebarTrigger className="cursor-pointer hover:scale-125 bg-primary/50"/>
-                <Separator orientation="vertical" className="mr-2 h-4" />
-                <p>Frase bonita ou futures</p>
-              </div>
-            </header>
-            {children}
+            <Header />
+            <main className="h-full mx-auto p-4 md:p-8 lg:p-12">
+              {children}
+            </main>
+            <Footer />
           </SidebarInset>
         </SidebarProvider>
       </body>
