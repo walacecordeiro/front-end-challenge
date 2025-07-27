@@ -2,6 +2,7 @@
 
 import { getTextExcerpt } from "@/lib/utils/getTextExcerpt";
 import { formatDate } from "@/lib/utils/formatDate";
+import { calculateReadingTime } from "@/lib/utils/calculateReadingTime";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -25,7 +26,7 @@ export default function PostCard({ post }) {
 
   return (
     <Card className="py-0 border-2 overflow-hidden max-w-full sm:max-w-md md:max-w-lg mx-auto transition-all duration-300 shadow-sm md:hover:scale-[1.01]">
-      <Link href="#">
+      <Link href={`/post/${post.slug}`}>
         <CardHeader className="flex p-0 w-full gap-0 sm:h-52 md:h-64">
           <Image
             src={imageUrl}
@@ -54,11 +55,7 @@ export default function PostCard({ post }) {
             </div>
             <div className="flex items-center gap-1">
               <Clock size={16} />
-              {Math.ceil(
-                post.content.rendered.replace(/<[^>]*>/g, "").split(" ")
-                  .length / 200
-              )}{" "}
-              min de leitura
+              {calculateReadingTime(post.content.rendered)} min de leitura
             </div>
           </div>
         </CardContent>
