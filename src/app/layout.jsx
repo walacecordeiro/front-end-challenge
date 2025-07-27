@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} antialiased dark`}>
+      <body className={`${inter.className} antialiased `}>
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
