@@ -17,6 +17,7 @@ import {
 
 export default function PostCard({ post }) {
   const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
+  console.log(featuredImage);
   const imageUrl = featuredImage?.source_url || "/api/placeholder/400/200";
   const imageAlt = featuredImage?.alt_text || post.title.rendered;
 
@@ -29,12 +30,14 @@ export default function PostCard({ post }) {
       <Link href={`/post/${post.slug}`}>
         <CardHeader className="flex p-0 w-full gap-0 sm:h-52 md:h-64">
           <Image
+            title={imageAlt}
             src={imageUrl}
             alt={imageAlt}
             width={400}
             height={200}
             className="object-cover w-full h-full"
             priority
+            loading="eager"
             onError={(e) => {
               e.target.src =
                 "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop";

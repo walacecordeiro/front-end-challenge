@@ -87,11 +87,13 @@ export default function PostPage() {
 
             <Image
               src={imageUrl}
+              title={imageAlt}
               alt={imageAlt}
               width={800}
               height={400}
               className="mx-auto mb-6 rounded-lg object-contain"
               priority
+              loading="eager"
               onError={(e) => {
                 e.target.src =
                   "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop";

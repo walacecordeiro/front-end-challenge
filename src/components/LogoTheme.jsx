@@ -19,5 +19,14 @@ export default function LogoTheme() {
 
   const logoSrc = currentTheme === "dark" ? logoDark : logoLight;
 
-  return <Image priority width={100} src={logoSrc} alt="logo do blog da Apiki" />;
+  return (
+    <Image
+      priority
+      loading="eager"
+      width={100}
+      src={logoSrc}
+      title="logo do blog da Apiki"
+      alt="logo do blog da Apiki"
+    />
+  );
 }

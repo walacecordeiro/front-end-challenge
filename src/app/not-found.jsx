@@ -1,19 +1,24 @@
-import Link from "next/link";
+import MyButton from "@/components/MyButton";
+import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import logomarca from "@/../public/logomarca.svg";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 text-gray-800">
-      <h1 className="text-6xl font-bold mb-4">404</h1>
+    <div className="min-h-full flex flex-col justify-center items-center">
+      <span className="flex items-center justify-center text-6xl font-bold mb-4">
+        <Image title="logomarca da Apiki" width={100} src={logomarca} alt="logomarca da Apiki" />
+        404
+      </span>
       <h2 className="text-2xl mb-2">Página não encontrada</h2>
       <p className="mb-6">
         Desculpe, não conseguimos encontrar o recurso solicitado.
       </p>
-      <Link
-        href="/"
-        className="mt-8 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-      >
+
+      <MyButton url="/">
+        <ArrowLeft size={16} />
         Voltar para a página inicial
-      </Link>
+      </MyButton>
     </div>
   );
 }
