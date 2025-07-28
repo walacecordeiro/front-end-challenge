@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Header from "@/components/Header";
@@ -16,18 +17,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-br">
-      <body className={`${inter.className} antialiased dark`}>
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <Header />
-            <main className="h-full mx-auto p-4 md:p-8 lg:p-12">
-              {children}
-            </main>
-            <Footer />
-          </SidebarInset>
-        </SidebarProvider>
+    <html lang="pt-br" suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <Header />
+              <main className="h-full mx-auto p-4 md:p-8 lg:p-12">
+                {children}
+              </main>
+              <Footer />
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

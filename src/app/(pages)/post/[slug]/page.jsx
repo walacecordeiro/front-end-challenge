@@ -42,7 +42,7 @@ export default function PostPage() {
   const loadPost = async (slug) => {
     try {
       const postData = await fetchPostBySlug(slug);
-      console.log(postData);
+      // console.log(postData);
 
       if (!postData) {
         return;

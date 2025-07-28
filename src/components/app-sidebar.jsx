@@ -1,5 +1,4 @@
 import * as React from "react";
-import logo from "@/../public/logo.svg";
 
 import {
   Sidebar,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 import Link from "next/link";
+import LogoTheme from "./LogoTheme";
 
 // Menu da Sidebar.
 const data = {
@@ -146,7 +146,7 @@ export function AppSidebar({ ...props }) {
               asChild
             >
               <Link href={"/"}>
-                <Image src={logo} alt="logo do blog da Apiki" />
+                <LogoTheme />
                 <div className="flex flex-col leading-none">
                   <span className="font-medium">Developer</span>
                   <p className="text-destructive">Menu ilustrativo</p>

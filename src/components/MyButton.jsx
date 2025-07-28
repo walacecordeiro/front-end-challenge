@@ -10,7 +10,7 @@ export default function MyButton({
 }) {
   return (
     <Button
-      className={`flex place-self-center cursor-pointer h-fit bg-primary/30 text-accent-foreground transition-all hover:scale-105 ${className} ${
+      className={`flex place-self-center cursor-pointer h-fit bg-primary/30 text-accent-foreground font-bold transition-all hover:scale-105 ${className} ${
         url && "p-0"
       }`}
       {...props}
